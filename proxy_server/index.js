@@ -12,15 +12,11 @@ async function getDailyRates() {
         'http://www.cnb.cz/en/financial_markets/foreign_exchange_market/exchange_rate_fixing/daily.txt '
       )
       .then(res => {
-        console.log(res.data);
-        console.log('breakpoint #1');
         data = res.data;
       });
   } catch (error) {
     console.error(error);
   }
-  //   console.log('breakpoint #2');
-  //   console.log(data);
   return data;
 }
 
