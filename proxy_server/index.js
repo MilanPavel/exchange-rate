@@ -11,12 +11,6 @@ async function getDailyRates(req) {
 
   //extract query param
   let date = new Date(req.query.date);
-  console.log(`day: ${date.getDate()}`);
-
-  // console.log(
-  //   `Request: ${BASE_URL}?date=${date.getDate()}.${date.getMonth() +
-  //     1}.${date.getFullYear()}`
-  // );
 
   try {
     await axios
@@ -26,7 +20,6 @@ async function getDailyRates(req) {
       )
       .then(res => {
         data = res.data;
-        console.log(data);
       });
   } catch (error) {
     console.error(error);
@@ -35,8 +28,6 @@ async function getDailyRates(req) {
 }
 
 app.get('/api/daily_rates', (req, res) => {
-  console.log(req.query);
-
   getDailyRates(req).then(data => res.send(data));
 });
 
