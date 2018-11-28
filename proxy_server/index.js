@@ -1,18 +1,32 @@
 const express = require('express');
 const axios = require('axios');
 
+const BASE_URL =
+  'http://www.cnb.cz/en/financial_markets/foreign_exchange_market/exchange_rate_fixing/daily.txt';
+
 const app = express();
 
-async function getDailyRates() {
+async function getDailyRates(req) {
   let data = '';
+
+  //extract query param
+  let date = new Date(req.query.date);
+  console.log(`day: ${date.getDate()}`);
+
+  // console.log(
+  //   `Request: ${BASE_URL}?date=${date.getDate()}.${date.getMonth() +
+  //     1}.${date.getFullYear()}`
+  // );
 
   try {
     await axios
       .get(
-        'http://www.cnb.cz/en/financial_markets/foreign_exchange_market/exchange_rate_fixing/daily.txt '
+        `${BASE_URL}?date=${date.getDate()}.${date.getMonth() +
+          1}.${date.getFullYear()}`
       )
       .then(res => {
         data = res.data;
+        console.log(data);
       });
   } catch (error) {
     console.error(error);
@@ -21,7 +35,9 @@ async function getDailyRates() {
 }
 
 app.get('/api/daily_rates', (req, res) => {
-  getDailyRates().then(data => res.send(data));
+  console.log(req.query);
+
+  getDailyRates(req).then(data => res.send(data));
 });
 
 if (process.env.NODE_ENV === 'production') {
