@@ -2,8 +2,6 @@ import React from 'react';
 import { Segment, Table } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
-// const flagRenderer = item => <Flag name={item.countryCode} />;
-
 const TableRates = props => (
   <Segment>
     <Table>

@@ -6,7 +6,6 @@ const InputAmount = props => (
   <Input
     labelPosition='right'
     type='text'
-    pattern='[0-9]{0,5}'
     placeholder='Amount'
     onChange={props.handler}
     disabled={props.disabled}
