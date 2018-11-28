@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "concurrently": "^4.1.0",
     "http-proxy-middleware": "^0.19.0",
     "react": "^16.6.3",
     "react-datepicker": "^2.0.0",
@@ -16,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "proxyServer": "yarn --cwd proxy_server run server",
+    "dev": "concurrently \"yarn run proxyServer\" \"yarn start\""
   },
   "eslintConfig": {
     "extends": "react-app"
