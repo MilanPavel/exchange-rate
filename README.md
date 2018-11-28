@@ -5,7 +5,7 @@ This is a simple SPA application displaying exchange rates served by Česká Ná
 # Build
 * Clone the repository
 * Cd project _root_ directory and perform `yarn`
-* Cd _proxyServer_ directory and perform `yarn`
+* Cd _proxy_server_ directory and perform `yarn`
 * Return to project _root_ directory
 * Perform `yarn run dev` (this will concurrently run both - client and server)
 * Go to `localhost:3000`
