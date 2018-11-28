@@ -39,7 +39,7 @@ class App extends Component {
       currentObject &&
       currentObject
     ) {
-      return inputCZK / currentObject.rate;
+      return (inputCZK / currentObject.rate) * currentObject.amount;
     }
   }
 
