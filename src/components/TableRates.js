@@ -8,13 +8,15 @@ const TableRates = props => (
       <Table.Header>
         <Table.Row>
           {props.header.map(element => (
-            <Table.HeaderCell>{element}</Table.HeaderCell>
+            <Table.HeaderCell key={element.toString()}>
+              {element}
+            </Table.HeaderCell>
           ))}
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {props.data.map(element => (
-          <Table.Row>
+          <Table.Row key={element['code'].toString()}>
             <Table.Cell>{element['state']}</Table.Cell>
             <Table.Cell>{element['currency']}</Table.Cell>
             <Table.Cell>{element['amount']}</Table.Cell>

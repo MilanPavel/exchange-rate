@@ -112,6 +112,7 @@ class App extends Component {
         // store the data (exchange rates)
         arr.shift(); // remove timestamp
         arr.shift(); // remove header
+        arr.pop(); // remove last empty object
         this.setState(
           { model: convertDataToModel(arr) },
           this.handlerUpdateCurrentObject
