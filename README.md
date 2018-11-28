@@ -8,10 +8,12 @@ This is a simple SPA application displaying exchange rates served by Česká Ná
 * Cd _proxyServer_ directory and perform `yarn`
 * Return to project _root_ directory
 * Perform `yarn run dev` (this will concurrently run both - client and server)
+* Go to `localhost:3000`
 
 # Techstack
 * React
 * [Semantic UI](https://react.semantic-ui.com/) component library
+* [React-datepicker](https://github.com/Hacker0x01/react-datepicker) lib used
 * Axios for sending HTTP requests
 * NodeJS/Express used for proxy server
 
