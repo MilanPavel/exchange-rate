@@ -135,10 +135,10 @@ class App extends Component {
     } = this.state;
 
     return (
-      <Grid divided='vertically'>
+      <Grid divided='vertically' data-test='component-app'>
         <Grid.Row columns={1}>
           <Grid.Column>
-            <TopHeader />
+            <TopHeader data-test='component-header' />
           </Grid.Column>
         </Grid.Row>
 
