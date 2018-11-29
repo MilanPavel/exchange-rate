@@ -10,12 +10,16 @@ This is a simple SPA application displaying exchange rates served by Česká Ná
 * Perform `yarn run dev` (this will concurrently run both - client and server)
 * Go to `localhost:3000`
 
+# Test
+* From _root_ directory run `yarn test`
+
 # Techstack
 * React
 * [Semantic UI](https://react.semantic-ui.com/) component library
 * [React-datepicker](https://github.com/Hacker0x01/react-datepicker) lib used
 * Axios for sending HTTP requests
 * NodeJS/Express used for proxy server
+* Jest/Enzyme for unit/integration tests
 
 # Proxy server
 ČNB API does not support CORS. Therefore it was necessary to create proxy server to intercept request/response from/to client and in this way bypass browser CORS restriction. 
