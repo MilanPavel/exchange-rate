@@ -12,29 +12,16 @@ import Calendar from './components/Calendar';
 import { convertDataToModel } from './utils/parsingHelpers';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    date: new Date(),
+    header: [], // extracted data for displaying header in table
+    model: [], // converted raw data into array of objects
+    inputCZK: '1',
+    selectedCurrency: '-----',
+    currentObject: undefined // current object selected from model array
+  };
 
-    this.state = {
-      date: new Date(),
-      header: [], // extracted data for displaying header in table
-      model: [], // converted raw data into array of objects
-      inputCZK: '1',
-      selectedCurrency: '-----',
-      currentObject: undefined // current object selected from model array
-    };
-
-    this.handlerInputCZK = this.handlerInputCZK.bind(this);
-    this.handlerDroplist = this.handlerDroplist.bind(this);
-    this.calculateConversion = this.calculateConversion.bind(this);
-    this.handlerCalendarChange = this.handlerCalendarChange.bind(this);
-    this.handlerUpdateCurrentObject = this.handlerUpdateCurrentObject.bind(
-      this
-    );
-    this.sendRequest = this.sendRequest.bind(this);
-  }
-
-  calculateConversion() {
+  calculateConversion = () => {
     const { inputCZK, currentObject, selectedCurrency } = this.state;
 
     if (
@@ -45,10 +32,10 @@ class App extends Component {
     ) {
       return (inputCZK / currentObject.rate) * currentObject.amount;
     }
-  }
+  };
 
   // this handler is necessary to call once new data arrive from server
-  handlerUpdateCurrentObject() {
+  handlerUpdateCurrentObject = () => {
     if (this.state.model) {
       // store curently selected item from model into App state
       let item = this.state.model.filter(item => {
@@ -56,19 +43,19 @@ class App extends Component {
       });
       this.setState({ currentObject: item[0] });
     }
-  }
+  };
 
   // CZK input changed
-  handlerInputCZK(e) {
+  handlerInputCZK = e => {
     e.preventDefault();
     this.setState({
       // allow to enter only digits
       inputCZK: e.target.value.replace(/\D/, '')
     });
-  }
+  };
 
   // currency changed
-  handlerDroplist(e, data) {
+  handlerDroplist = (e, data) => {
     e.preventDefault();
     if (this.state.model) {
       // store curently selected item from model into App state
@@ -80,10 +67,10 @@ class App extends Component {
     this.setState({
       selectedCurrency: data.value
     });
-  }
+  };
 
   // calendar date changed
-  handlerCalendarChange(e) {
+  handlerCalendarChange = e => {
     this.setState(
       {
         date: new Date(e)
@@ -91,10 +78,10 @@ class App extends Component {
       // retrieve new exchange rates from CNB API
       this.sendRequest
     );
-  }
+  };
 
   // issue request to proxyServer
-  sendRequest() {
+  sendRequest = () => {
     axios
       .get(`/api/daily_rates`, { params: { date: this.state.date } })
       .then(res => {
@@ -118,7 +105,7 @@ class App extends Component {
           this.handlerUpdateCurrentObject
         );
       });
-  }
+  };
 
   componentDidMount() {
     this.sendRequest();
